@@ -6,6 +6,7 @@ public class Move : MonoBehaviour {
     private Vector3 position;
     [SerializeField] private float vitesse;
     private Animator animator;
+    [SerializeField] private LayerMask layer;
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
@@ -24,7 +25,7 @@ public class Move : MonoBehaviour {
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
         {
             position = hit.point;
     

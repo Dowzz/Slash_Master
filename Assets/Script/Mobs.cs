@@ -10,6 +10,10 @@ public class Mobs : MonoBehaviour {
     private bool isAttack;
     private bool Inrange { get { return Vector3.Distance(transform.position, player.position) <= range; } }
     private bool InrangeAttack { get { return Vector3.Distance(transform.position, player.position) <= rangeAttack; } }
+    [SerializeField] private float vie = 100;
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float cooldown = 2f;
+    private float cooldownGlobal;
     void Start () {
         animationcontroller = GetComponent<Animation>();
 	}
@@ -23,8 +27,7 @@ public class Mobs : MonoBehaviour {
     private void chase()
     {
         if (Inrange && !isAttack)
-        {
-            transform.LookAt(player);
+        { 
             transform.LookAt(player);
             transform.Translate(Vector3.forward * vitesse * Time.deltaTime);
             animationcontroller.CrossFade(run.name);    
@@ -34,6 +37,12 @@ public class Mobs : MonoBehaviour {
     {
         if (InrangeAttack)
         {
+            if (cooldownGlobal <= Time.time)
+            {
+                cooldownGlobal = Time.time + cooldown;
+                player.GetComponent<PlayerFight>().Gethit(damage);
+            }
+            transform.LookAt(player);
             animationcontroller.CrossFade(attack.name);
             isAttack = true;
         }
@@ -48,6 +57,19 @@ public class Mobs : MonoBehaviour {
     }
     private void OnMouseOver()
     {
-        Debug.Log(gameObject);
+        if (Input.GetMouseButton(1))
+        {
+            player.GetComponent<PlayerFight>().Target = gameObject;
+        }
+    }
+    public void GetHit(float damage)
+    {
+        vie -= damage;
+        if (vie<=0)
+        {
+            vie = 0;
+        }
+        Debug.Log(vie);
+
     }
 }
