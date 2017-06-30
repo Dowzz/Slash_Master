@@ -31,7 +31,7 @@ public class PlayerFight : MonoBehaviour {
 	}
     private void Attack()
     {
-        if (target != null && InRangeAttack && !isAttack)
+        if (target != null && InRangeAttack && !isAttack && AutoAttack)
         {
             isAttack = true;
             StartCoroutine(RotationPlayer());
@@ -39,14 +39,20 @@ public class PlayerFight : MonoBehaviour {
             anim.SetBool("run", false);
         }
     }
+    
     public void Hit()
     {
-        target.GetComponent<Mobs>().GetHit(damage);
+        if (target != null)
+        {
+            target.GetComponent<Mobs>().GetHit(damage);
+        }
+        
     }
     public void EndAnimation()
     {
         isAttack = false;
         anim.SetBool("Attack", false);
+        anim.SetBool("Idle", true);
     }
     public void Gethit(float damage)
     {
@@ -61,9 +67,14 @@ public class PlayerFight : MonoBehaviour {
     {
         while (isAttack)
         {
-            Quaternion newRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 0.2f);
+            if (target != null)
+            {
+                Quaternion newRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 0.2f);
+                yield return null;
+            }
             yield return null;
+               
         }
     }
     private void OnDrawGizmos()

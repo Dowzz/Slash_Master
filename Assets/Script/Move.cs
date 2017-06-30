@@ -47,20 +47,6 @@ public class Move : MonoBehaviour {
     {
         GameObject target = fight.Target;
 
-        if (Input.GetMouseButton(0))
-        {
-            animator.SetBool("Attack", false);
-            animator.SetBool("Idle", false);
-
-            fight.IsAttack = false;
-            MoveAuto = false;
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
-            {
-                return position = hit.point;
-            }
-        }
         if (target != null)
         {
             if (target.GetComponent<Mobs>().IsTarget && Input.GetMouseButton(0))
@@ -73,6 +59,7 @@ public class Move : MonoBehaviour {
             }
             if (fight.InRangeAttack && MoveAuto)
             {
+                fight.AutoAttack = true;
                 return position = transform.position;
             }
             if (fight.IsAttack)
@@ -80,6 +67,29 @@ public class Move : MonoBehaviour {
                 return position = transform.position;
             }
         }
+        else
+        {
+            animator.SetBool("Attack", false);
+
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            fight.AutoAttack = false;
+
+            animator.SetBool("Attack", false);
+            animator.SetBool("Idle", false);
+
+            fight.IsAttack = false;
+            MoveAuto = false;
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
+            {
+                return position = hit.point;
+            }
+        }
+       
         return position;
       
     }

@@ -103,7 +103,9 @@ public class Mobs : MonoBehaviour {
         vie -= damage;
         if (vie<=0)
         {
-            vie = 0;
+            HealthBarMob.SetActive(false);
+            gameObject.SetActive(false);
+            Destroy(gameObject, 0.1f);
         }
     }
 }
