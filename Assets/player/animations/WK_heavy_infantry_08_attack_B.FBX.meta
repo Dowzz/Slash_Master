@@ -85,7 +85,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -98,8 +98,16 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.32091096
-        functionName: NewEvent
+      - time: 0.34017596
+        functionName: Hit
+        data: 
+        objectReferenceParameter: {fileID: 102900000, guid: 60525a24046e56641b7387c57c6f4930,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9941349
+        functionName: EndAnimation
         data: 
         objectReferenceParameter: {fileID: 102900000, guid: 60525a24046e56641b7387c57c6f4930,
           type: 3}

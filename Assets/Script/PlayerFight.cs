@@ -4,32 +4,49 @@ using UnityEngine;
 
 public class PlayerFight : MonoBehaviour {
     private GameObject target;
-    public GameObject Target { get { return Target;  } set { target = value; } }
+    public GameObject Target { get { return target;  } set { target = value; } }
     [SerializeField] private float vie = 200;
     [SerializeField] private float damage = 10f;
-    [SerializeField] private float cooldown = 2f;
-    private float cooldownGlobal;
+    [SerializeField] private float rangeAttack = 2f;
     private Animator anim;
-    void Start () {
+    private bool isAttack;
+    public bool AutoAttack { get; set; }
+    public bool IsAttack { get { return isAttack; }set { isAttack = value; } }
+    public bool InRangeAttack { get { return Vector3.Distance(transform.position, target.transform.position) < rangeAttack; } }
+    
+
+    void Start ()
+    {
         anim = GetComponent<Animator>();
 	}
 	
 
 	void Update () {
         Attack();
-        Debug.Log(target);
+        if (isAttack)
+        {
+            anim.SetBool("Idle", false);
+        }
 		
 	}
     private void Attack()
     {
-        if (Input.GetKey(KeyCode.Space)&& target != null && cooldownGlobal <= Time.time)
+        if (target != null && InRangeAttack && !isAttack)
         {
-            cooldownGlobal = Time.time + cooldown;
+            isAttack = true;
+            StartCoroutine(RotationPlayer());
             anim.SetBool("Attack", true);
-            anim.SetBool("Idle", false);
-            anim.SetBool("Run", false);
-
+            anim.SetBool("run", false);
         }
+    }
+    public void Hit()
+    {
+        target.GetComponent<Mobs>().GetHit(damage);
+    }
+    public void EndAnimation()
+    {
+        isAttack = false;
+        anim.SetBool("Attack", false);
     }
     public void Gethit(float damage)
     {
@@ -39,5 +56,19 @@ public class PlayerFight : MonoBehaviour {
             vie = 0;
         }
         Debug.Log(vie);
+    }
+    private IEnumerator RotationPlayer()
+    {
+        while (isAttack)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 0.2f);
+            yield return null;
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rangeAttack);
     }
 }

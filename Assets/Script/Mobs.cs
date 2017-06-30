@@ -1,27 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Mobs : MonoBehaviour {
+
     [SerializeField] private Transform player;
+
     [SerializeField] private float vitesse, range, rangeAttack ;
+
     [SerializeField] private AnimationClip run, idle, attack;
+
     private Animation animationcontroller;
-    private bool isAttack;
+    private bool isAttack;  
     private bool Inrange { get { return Vector3.Distance(transform.position, player.position) <= range; } }
     private bool InrangeAttack { get { return Vector3.Distance(transform.position, player.position) <= rangeAttack; } }
-    [SerializeField] private float vie = 100;
+    private float vie;
+    public bool IsTarget { get; set; }
+
+    [SerializeField] private float MaxHealth = 100f;
     [SerializeField] private float damage = 10f;
     [SerializeField] private float cooldown = 2f;
+
+    [SerializeField] private GameObject HealthBarMob;
+    [SerializeField] private GameObject valueBarMob;
     private float cooldownGlobal;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rangeAttack);
+    }
+
     void Start () {
+        HealthBarMob.SetActive(false);
         animationcontroller = GetComponent<Animation>();
+        vie = MaxHealth;
 	}
 	
 	
 	void Update () {
         chase();
         Attack();
+        manageHealthBar();
 
     }
     private void chase()
@@ -30,8 +53,8 @@ public class Mobs : MonoBehaviour {
         { 
             transform.LookAt(player);
             transform.Translate(Vector3.forward * vitesse * Time.deltaTime);
-            animationcontroller.CrossFade(run.name);    
-        }
+            animationcontroller.CrossFade(run.name);
+        }   
     }
     private void Attack()
     {
@@ -57,9 +80,22 @@ public class Mobs : MonoBehaviour {
     }
     private void OnMouseOver()
     {
-        if (Input.GetMouseButton(1))
+        IsTarget = true;
+        if (Input.GetMouseButton(0))
         {
             player.GetComponent<PlayerFight>().Target = gameObject;
+            HealthBarMob.SetActive(true);
+        }
+    }
+    private void OnMouseExit()
+    {
+        IsTarget = false;
+    }
+    private void manageHealthBar()
+    {
+        if (player.GetComponent<PlayerFight>().Target == gameObject)
+        {
+            valueBarMob.GetComponent<Image>().fillAmount = Mathf.Lerp(valueBarMob.GetComponent<Image>().fillAmount, vie / MaxHealth, 0.2f);
         }
     }
     public void GetHit(float damage)
@@ -69,7 +105,5 @@ public class Mobs : MonoBehaviour {
         {
             vie = 0;
         }
-        Debug.Log(vie);
-
     }
 }
