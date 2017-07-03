@@ -67,9 +67,14 @@ public class Move : MonoBehaviour {
                     animator.SetBool("run", true);
                     animator.SetBool("Idle", false);
                     fight.IsAttack = false;
-                    fight.AutoAttack = true;
+                    
                     MoveAuto = true;
                     return position = target.transform.position;
+                }
+                else
+                {
+                    fight.AutoAttack = false;
+                    animator.SetBool("run", true);
                 }
             
                 if (fight.IsAttack)
@@ -81,6 +86,7 @@ public class Move : MonoBehaviour {
                 }
             }
 
+            fight.IsAttack = false;
             fight.AutoAttack = false;
             fight.IsAttack = false;
             MoveAuto = false;
