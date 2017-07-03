@@ -9,7 +9,7 @@ public class Mobs : MonoBehaviour {
 
     [SerializeField] private float vitesse, range, rangeAttack ;
 
-    [SerializeField] private AnimationClip run, idle, attack;
+    [SerializeField] private AnimationClip run, idle, attack, die;
 
     private Animation animationcontroller;
     private bool isAttack;  
@@ -103,9 +103,13 @@ public class Mobs : MonoBehaviour {
         vie -= damage;
         if (vie<=0)
         {
-            HealthBarMob.SetActive(false);
-            gameObject.SetActive(false);
-            Destroy(gameObject, 0.1f);
+            isAttack = false;
+            if (! isAttack)
+            {
+                animationcontroller.CrossFade(die.name);    
+                HealthBarMob.SetActive(false);
+            }
+            Destroy(gameObject, 2.5f);
         }
     }
 }
