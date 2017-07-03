@@ -88,11 +88,10 @@ public class Move : MonoBehaviour {
 
             fight.IsAttack = false;
             fight.AutoAttack = false;
-            fight.IsAttack = false;
             MoveAuto = false;
             animator.SetBool("run",true);
             animator.SetBool("Attack", false);
-            animator.SetBool("Idle", false);
+            
 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
