@@ -53,6 +53,8 @@ public class PlayerFight : MonoBehaviour {
         isAttack = false;
         anim.SetBool("Attack", false);
         anim.SetBool("Idle", true);
+
+
     }
     public void Gethit(float damage)
     {

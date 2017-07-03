@@ -47,48 +47,55 @@ public class Move : MonoBehaviour {
     {
         GameObject target = fight.Target;
 
-        if (target != null)
-        {
-            if (target.GetComponent<Mobs>().IsTarget && Input.GetMouseButton(0))
-            {
-                animator.SetBool("Attack", true);
-                animator.SetBool("Idle", false);
-                fight.IsAttack = false;
-                MoveAuto = true;
-                return position = target.transform.position;
-            }
-            if (fight.InRangeAttack && MoveAuto)
-            {
-                fight.AutoAttack = true;
-                return position = transform.position;
-            }
-            if (fight.IsAttack)
-            {
-                return position = transform.position;
-            }
-        }
-        else
-        {
-            animator.SetBool("Attack", false);
+        
 
-        }
-
+       
         if (Input.GetMouseButton(0))
         {
-            fight.AutoAttack = false;
+            if (target != null)
+            {
+                if (target.GetComponent<Mobs>().IsTarget)
+                {
+                    fight.AutoAttack = true;
+                    if (fight.InRangeAttack && MoveAuto)
+                    {
+                        animator.SetBool("Attack", true);
+                        
+                        fight.IsAttack = false;
+                        return position = transform.position;
+                    }
+                    animator.SetBool("run", true);
+                    animator.SetBool("Idle", false);
+                    fight.IsAttack = false;
+                    fight.AutoAttack = true;
+                    MoveAuto = true;
+                    return position = target.transform.position;
+                }
+            
+                if (fight.IsAttack)
+                {
+                    return position = transform.position;
+                }
+            }
 
+            fight.AutoAttack = false;
+            fight.IsAttack = false;
+            MoveAuto = true;
+            animator.SetBool("run",true);
             animator.SetBool("Attack", false);
             animator.SetBool("Idle", false);
 
-            fight.IsAttack = false;
-            MoveAuto = false;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
                 return position = hit.point;
             }
+
         }
+
+
+        
        
         return position;
       
