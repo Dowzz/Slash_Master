@@ -56,7 +56,7 @@ public class Move : MonoBehaviour {
             {
                 if (target.GetComponent<Mobs>().IsTarget)
                 {
-                    fight.AutoAttack = true;
+                    
                     if (fight.InRangeAttack && MoveAuto)
                     {
                         animator.SetBool("Attack", true);
@@ -67,7 +67,7 @@ public class Move : MonoBehaviour {
                     animator.SetBool("run", true);
                     animator.SetBool("Idle", false);
                     fight.IsAttack = false;
-                    
+                    fight.AutoAttack = true;
                     MoveAuto = true;
                     return position = target.transform.position;
                 }
