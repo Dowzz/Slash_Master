@@ -74,13 +74,16 @@ public class Move : MonoBehaviour {
             
                 if (fight.IsAttack)
                 {
+                    
+                    animator.SetBool("Attack", false);
+                    animator.SetBool("run", true);
                     return position = transform.position;
                 }
             }
 
             fight.AutoAttack = false;
             fight.IsAttack = false;
-            MoveAuto = true;
+            MoveAuto = false;
             animator.SetBool("run",true);
             animator.SetBool("Attack", false);
             animator.SetBool("Idle", false);
