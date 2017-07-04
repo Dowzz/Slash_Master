@@ -9,12 +9,13 @@ public class Move : MonoBehaviour {
     private Animator animator;
     [SerializeField] private LayerMask layer;
     private bool MoveAuto;
-    private Mobs mob;
+    
 	
 	void Start () {
         animator = GetComponent<Animator>();
         position = transform.position;
         fight = GetComponent<PlayerFight>();
+        
 	}
 	
 	void Update () {
@@ -34,7 +35,7 @@ public class Move : MonoBehaviour {
                 transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 0.1f);
                 transform.position = Vector3.MoveTowards(transform.position, Position(), vitesse * Time.deltaTime); 
             }            
-            Debug.Log(fight.Target);
+            
         }
         else
         {
@@ -60,7 +61,6 @@ public class Move : MonoBehaviour {
                     if (fight.InRangeAttack && MoveAuto)
                     {
                         animator.SetBool("Attack", true);
-                        
                         fight.IsAttack = false;
                         return position = transform.position;
                     }
@@ -73,8 +73,18 @@ public class Move : MonoBehaviour {
                 }
                 else
                 {
+                    
+                    fight.Target = null;
+                    fight.IsAttack = true;
                     fight.AutoAttack = false;
+                    animator.SetBool("Attack", false);
                     animator.SetBool("run", true);
+                    RaycastHit hit2;
+                    Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray2, out hit2, Mathf.Infinity, layer))
+                    {
+                        return position = hit2.point;
+                    }
                 }
             
                 if (fight.IsAttack)
@@ -102,9 +112,6 @@ public class Move : MonoBehaviour {
 
         }
 
-
-        
-       
         return position;
       
     }

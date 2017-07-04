@@ -25,7 +25,7 @@ public class PlayerFight : MonoBehaviour {
         Attack();
         if (isAttack)
         {
-            anim.SetBool("Idle", false);
+            anim.SetBool("attack", false);
         }
 		
 	}
@@ -36,6 +36,7 @@ public class PlayerFight : MonoBehaviour {
             isAttack = true;
             StartCoroutine(RotationPlayer());
             anim.SetBool("Attack", true);
+            anim.SetBool("Idle", false);
             anim.SetBool("run", false);
         }
     }
@@ -52,7 +53,7 @@ public class PlayerFight : MonoBehaviour {
     {
         isAttack = false;
         anim.SetBool("Attack", false);
-        anim.SetBool("Idle", true);
+        
 
 
     }
@@ -63,7 +64,7 @@ public class PlayerFight : MonoBehaviour {
         {
             vie = 0;
         }
-        Debug.Log(vie);
+        
     }
     private IEnumerator RotationPlayer()
     {

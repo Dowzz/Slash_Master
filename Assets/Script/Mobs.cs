@@ -22,7 +22,7 @@ public class Mobs : MonoBehaviour {
     [SerializeField] private float damage = 10f;
     [SerializeField] private float cooldown = 2f;
 
-    [SerializeField] private GameObject HealthBarMob;
+    [SerializeField] public GameObject HealthBarMob;
     [SerializeField] private GameObject valueBarMob;
     private float cooldownGlobal;
 
@@ -90,6 +90,7 @@ public class Mobs : MonoBehaviour {
     private void OnMouseExit()
     {
         IsTarget = false;
+        
     }
     private void manageHealthBar()
     {
@@ -101,15 +102,10 @@ public class Mobs : MonoBehaviour {
     public void GetHit(float damage)
     {
         vie -= damage;
-        if (vie<=0)
-        {
-            isAttack = false;
-            if (! isAttack)
-            {
-                animationcontroller.CrossFade(die.name);    
-                HealthBarMob.SetActive(false);
-            }
-            Destroy(gameObject, 2.5f);
+        if (Inrange && vie<=0)
+        {   
+            HealthBarMob.SetActive(false);
+            Destroy(gameObject, 0.5f);
         }
     }
 }
