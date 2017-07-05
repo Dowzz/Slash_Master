@@ -22,7 +22,7 @@
 			"defence" : 2,
 			"vitality" : 54
 			},
-		"description" : "Une belle épée, en métal. SISI !",
+		"description" : "Une belle epee, en metal. SISI !",
 		"stackable" : true,
 		"rarity": 6,
 		"slug" : "warrior_sword" 
