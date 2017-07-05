@@ -20,7 +20,7 @@ public class Mobs : MonoBehaviour {
 
     [SerializeField] private float MaxHealth = 100f;
     [SerializeField] private float damage = 10f;
-    [SerializeField] private float cooldown = 2f;
+    [SerializeField] private float cooldown = 1f;
 
     [SerializeField] public GameObject HealthBarMob;
     [SerializeField] private GameObject valueBarMob;

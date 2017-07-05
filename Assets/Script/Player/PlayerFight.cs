@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerFight : MonoBehaviour {
     private GameObject target;
-    public GameObject Target { get { return target;  } set { target = value; } }
-    [SerializeField] private float vie = 200;
+    public GameObject Target { get { return target; } set { target = value; } }
+    [SerializeField] private float maxvie  { get; set; }
+    [SerializeField] private float vie  { get; set; }
     [SerializeField] private float damage = 10f;
     [SerializeField] private float rangeAttack = 2f;
     private Animator anim;
@@ -13,11 +15,15 @@ public class PlayerFight : MonoBehaviour {
     public bool AutoAttack { get; set; }
     public bool IsAttack { get { return isAttack; }set { isAttack = value; } }
     public bool InRangeAttack { get { return Vector3.Distance(transform.position, target.transform.position) < rangeAttack; } }
+    public Slider healthbar;
     
 
     void Start ()
     {
         anim = GetComponent<Animator>();
+        maxvie = 200;
+        vie = maxvie;
+        healthbar.value = CalculateHealth();
 	}
 	
 
@@ -25,7 +31,7 @@ public class PlayerFight : MonoBehaviour {
         Attack();
         if (isAttack)
         {
-            anim.SetBool("attack", false);
+            anim.SetBool("Attack", true);
         }
 		
 	}
@@ -47,7 +53,11 @@ public class PlayerFight : MonoBehaviour {
         {
             target.GetComponent<Mobs>().GetHit(damage);
         }
-        
+            
+    }
+    float CalculateHealth()
+    {
+        return vie / maxvie;
     }
     public void EndAnimation()
     {
@@ -60,6 +70,8 @@ public class PlayerFight : MonoBehaviour {
     public void Gethit(float damage)
     {
         vie -= damage;
+        healthbar.value = CalculateHealth();
+        Debug.Log(vie);
         if (vie <= 0)
         {
             vie = 0;
