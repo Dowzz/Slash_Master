@@ -71,7 +71,6 @@ public class PlayerFight : MonoBehaviour {
     {
         vie -= damage;
         healthbar.value = CalculateHealth();
-        Debug.Log(vie);
         if (vie <= 0)
         {
             vie = 0;

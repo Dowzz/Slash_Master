@@ -38,6 +38,7 @@ public class Mobs : MonoBehaviour {
         HealthBarMob.SetActive(false);
         animationcontroller = GetComponent<Animation>();
         vie = MaxHealth;
+        FloatingTextController.Initialize();
 	}
 	
 	
@@ -101,6 +102,7 @@ public class Mobs : MonoBehaviour {
     }
     public void GetHit(float damage)
     {
+        FloatingTextController.CreateFloatinText(damage.ToString(), transform);
         vie -= damage;
         if (Inrange && vie<=0)
         {   
