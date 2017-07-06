@@ -7,15 +7,24 @@ public class CameraFollow : MonoBehaviour {
     private Transform target;
     [SerializeField]
     private float distance, Height;
+    float zoomSpeed = 25f;
+    Camera playerCam;
 
     // Use this for initialization
     void Start () {
+        playerCam = GetComponent<Camera>();
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
         TargetFollow();
+        if (Input.GetAxisRaw("Mouse ScrollWheel") != 0)
+        {
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            playerCam.fieldOfView -= scroll * zoomSpeed;
+            playerCam.fieldOfView =  Mathf.Clamp(playerCam.fieldOfView, 50, 120);
+        }
 	}
     private void TargetFollow()
     {
