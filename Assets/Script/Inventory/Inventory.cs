@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour {
     ItemDatabase database;
     public GameObject inventorySlot;
     public GameObject inventoryItem;
+    
 
     int slotAmount;
     public List<Item> items = new List<Item>();
@@ -17,10 +18,10 @@ public class Inventory : MonoBehaviour {
 
     private void Start()
     {
-        
         database = GetComponent<ItemDatabase>();
+        
 
-        slotAmount = 24;
+        slotAmount = 20;
         inventoryPanel = GameObject.Find("Inventory Panel");
         inventoryPanel.SetActive(false);
         slotPanel = inventoryPanel.transform.Find("Slot Panel").gameObject;
@@ -47,6 +48,7 @@ public class Inventory : MonoBehaviour {
         {
             menuIsActive = !menuIsActive;
             inventoryPanel.SetActive(menuIsActive);
+            
         }
     }
 
