@@ -7,6 +7,7 @@ public class Tooltip : MonoBehaviour {
     private Item item;
     private string data;
     private GameObject tooltip;
+    
 
     private void Start()
     {
