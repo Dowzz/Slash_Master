@@ -29,3 +29,23 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Script/Inventory/Inventory.cs
+Assets/Resources/Sprite/CharInventory/chest.png.meta
+Assets/Resources/Sprite/CharInventory/body.png.meta
+Assets/Resources/Sprite/CharInventory/belt.png.meta
+Assets/Resources/Sprite/CharInventory/armor.png.meta
+Assets/Resources/Sprite/CharInventory.meta
+Assets/Resources/PNG/drink-me.png.meta
+Assets/Resources/PNG/diamond-ring.png.meta
+Assets/Resources/PNG/cloak.png.meta
+Assets/Resources/PNG/bread.png.meta
+Assets/Resources/PNG.meta
+Assets/Materials/UIpack_RPG/PNG/arrowBlue_right.png.meta
+Assets/Materials/UIpack_RPG/PNG/arrowBlue_left.png.meta
+Assets/Materials/UIpack_RPG/PNG/arrowBeige_right.png.meta
+Assets/Materials/UIpack_RPG/PNG/arrowBeige_left.png.meta
+Assets/Materials/UIpack_RPG.meta
+Assets/Inventory/Tooltip.meta
+Assets/Inventory/Slot.meta
+Assets/Inventory.meta
+Assets/first.unity
