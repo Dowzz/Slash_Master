@@ -58,10 +58,13 @@ public class Slot : MonoBehaviour{
             Global.inventoryManager.endSlot = this;
 
         if (item == null) return;
+        tooltip.Activate(item);
 
     }
     public void MouseExit()
     {
+        tooltip.Deactivate();
         if (Global.inventoryManager.dragEnable) Global.inventoryManager.endSlot = null;
+        
     }
 }
