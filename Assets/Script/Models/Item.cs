@@ -8,6 +8,7 @@ public class Item {
     public string name;
     public int quantity;
     public string image;
+    public ItemTypes itemType;
    
 }
  

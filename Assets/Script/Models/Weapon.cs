@@ -13,4 +13,8 @@ public class Weapon : Item {
 	void Update () {
 		
 	}
+    public Weapon()
+    {
+        this.itemType = ItemTypes.Weapon;
+    }
 }

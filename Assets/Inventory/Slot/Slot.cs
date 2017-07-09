@@ -5,40 +5,63 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
+public class Slot : MonoBehaviour{
+    public String identity;
     public Item item;
+    public int id;
+    public ItemTypes availableItemType;
+
+
     private Image image;
     private Tooltip tooltip;
+    
 
     private void Start()
     {
         tooltip = GameObject.Find("Canvas").GetComponent<Tooltip>();
+        
     }
     void Awake()
     {
-        image = transform.GetChild(0).GetComponent<Image>();   
-        Weapon weapon = new Weapon();
-        weapon.name = "bread";
-        weapon.image = "bread";
-        this.item = weapon;
-        LoadImage();
-
+        identity = GetComponent<Slot>().identity;
+        image = transform.GetChild(0).GetComponent<Image>();
+        RefreshImage();
     }
 
-    void LoadImage()
+    public void RefreshImage()
     {
-        if (item == null || image== null) return;
+        if (item == null)
+        {
+            image.sprite = Resources.Load<Sprite>("PNG/CharInventory/" + identity);
+            return;
+        }
 
-        image.sprite = Resources.Load<Sprite>("PNG/" + item.image);
+        image.sprite = Resources.Load<Sprite>("PNG/Items/" + item.image);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void MouseDown()
     {
-        tooltip.Activate(item);
+        //clique pour deplacer un objet
+        if (item == null) return;
+
+        Global.inventoryManager.StartDrag(this);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void MouseUp()
     {
-        tooltip.Deactivate();
+        //pour lacher l'objet ou on veut
+        Global.inventoryManager.stopDrag();
+    }
+    public void MouseEnter()
+    {
+        if (Global.inventoryManager.dragEnable)
+            Global.inventoryManager.endSlot = this;
+
+        if (item == null) return;
+
+    }
+    public void MouseExit()
+    {
+        if (Global.inventoryManager.dragEnable) Global.inventoryManager.endSlot = null;
     }
 }

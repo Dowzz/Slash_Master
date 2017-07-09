@@ -16,15 +16,15 @@ public class Mobs : MonoBehaviour {
     private bool Inrange { get { return Vector3.Distance(transform.position, player.position) <= range; } }
     private bool InrangeAttack { get { return Vector3.Distance(transform.position, player.position) <= rangeAttack; } }
     private float vie;
-    public bool IsTarget { get; set; }
-
+    [SerializeField] private GameObject valueBarMob;
+    private float cooldownGlobal;
     [SerializeField] private float MaxHealth = 100f;
     [SerializeField] private float damage = 10f;
     [SerializeField] private float cooldown = 1f;
 
+    public bool IsTarget { get; set; }
     [SerializeField] public GameObject HealthBarMob;
-    [SerializeField] private GameObject valueBarMob;
-    private float cooldownGlobal;
+    
 
     private void OnDrawGizmos()
     {

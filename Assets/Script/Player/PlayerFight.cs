@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerFight : MonoBehaviour {
     private GameObject target;
-    public GameObject Target { get { return target; } set { target = value; } }
     [SerializeField] private float maxvie  { get; set; }
     [SerializeField] private float vie  { get; set; }
     [SerializeField] private float damage = 10f;
     [SerializeField] private float rangeAttack = 2f;
     private Animator anim;
     private bool isAttack;
+    public GameObject Target { get { return target; } set { target = value; } }
     public bool AutoAttack { get; set; }
     public bool IsAttack { get { return isAttack; }set { isAttack = value; } }
     public bool InRangeAttack { get { return Vector3.Distance(transform.position, target.transform.position) < rangeAttack; } }

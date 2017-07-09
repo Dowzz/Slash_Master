@@ -33,6 +33,8 @@ public class SlotManager : MonoBehaviour {
                 GameObject currentSlot = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity);
                 currentSlot.transform.parent = transform;
                 currentSlot.name = "Slot" + slotCount;
+                Slot slot = currentSlot.GetComponent<Slot>();
+                slot.id = slotCount;
 
                 
                 //positionnement du premier slot
