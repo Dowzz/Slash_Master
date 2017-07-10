@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class InventoryManager : MonoBehaviour {
     public bool dragEnable = false;
@@ -11,6 +12,7 @@ public class InventoryManager : MonoBehaviour {
     private Slot startSlot;
     private Image draggableImage;
     private Vector3 dragPosition;
+    public List<Slot> slotlist = new List<Slot>();
 
     private void Awake()
     {
@@ -71,10 +73,22 @@ public class InventoryManager : MonoBehaviour {
             //change le slot
             endSlot.item = startSlot.item;
             endSlot.RefreshImage();
+            endSlot.refreshQuantity();
             //change start slot image
             startSlot.item = null;
             startSlot.RefreshImage();
+            startSlot.refreshQuantity();
             }
     }
     #endregion
+    public void Additem (Item item)
+        {
+            if (item == null) return;
+
+        Slot currentSlot = slotlist.Where(p => p.item == null).First();
+
+        currentSlot.item = item;
+        currentSlot.RefreshImage();
+        currentSlot.refreshQuantity();
+        }
 }

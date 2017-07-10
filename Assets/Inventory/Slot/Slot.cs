@@ -13,19 +13,21 @@ public class Slot : MonoBehaviour{
 
 
     private Image image;
+    private Text quantityText;
     private Tooltip tooltip;
     
 
     private void Start()
     {
         tooltip = GameObject.Find("Canvas").GetComponent<Tooltip>();
-        
+        refreshQuantity();
     }
     void Awake()
     {
         identity = GetComponent<Slot>().identity;
         image = transform.GetChild(0).GetComponent<Image>();
         RefreshImage();
+        quantityText = transform.Find("Quantity").GetComponent<Text>();
     }
 
     public void RefreshImage()
@@ -66,5 +68,14 @@ public class Slot : MonoBehaviour{
         tooltip.Deactivate();
         if (Global.inventoryManager.dragEnable) Global.inventoryManager.endSlot = null;
         
+    }
+    public void refreshQuantity()
+    {
+        if (item == null || quantityText == null)
+        {
+            quantityText.text = string.Empty;
+            return;
+        }
+        quantityText.text = (item.quantity <= 0) ? string.Empty : item.quantity.ToString();
     }
 }

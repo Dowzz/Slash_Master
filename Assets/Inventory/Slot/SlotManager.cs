@@ -35,6 +35,7 @@ public class SlotManager : MonoBehaviour {
                 currentSlot.name = "Slot" + slotCount;
                 Slot slot = currentSlot.GetComponent<Slot>();
                 slot.id = slotCount;
+                Global.inventoryManager.slotlist.Add(slot);
 
                 
                 //positionnement du premier slot

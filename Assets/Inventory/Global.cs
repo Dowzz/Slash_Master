@@ -13,6 +13,7 @@ public class Global : MonoBehaviour {
     private void Awake()
     {
         canvas = GameObject.Find("Canvas");
+        
     }
 
     void Start()
@@ -26,7 +27,20 @@ public class Global : MonoBehaviour {
         weapon.image = "bread";
         slot.item = weapon;
         slot.RefreshImage();
+        slot.refreshQuantity();
+
+        GameObject slot2 = GameObject.Find("Slot2");
+        Slot Myslot2 = slot2.GetComponent<Slot>();
+        Consumable consumable = new Consumable();
+        consumable.name = "Potion";
+        consumable.image = "drink";
+        consumable.quantity = 5;
+        Myslot2.item = consumable;
+        Myslot2.RefreshImage();
+        slot.refreshQuantity();
+        InventoryPanel.gameObject.SetActive(false);
     }
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
