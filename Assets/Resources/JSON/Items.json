@@ -1,0 +1,15 @@
+{
+	"HealthPotion" :{
+		"name": "Potion de soins",
+		"description": "Une potion pour vous guerir",
+		"level": "1",
+		"type": "Consumable",
+		"image": "drink"
+	},
+	"ManaPotion" :{
+		"name": "Potion de mana",
+		"description": "Une potion pour regenerer la mana",
+		"level": "1",
+		"type": "Consumable",
+		"image": "meat" 
+	}

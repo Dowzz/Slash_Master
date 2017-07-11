@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Mobs : MonoBehaviour {
+    #region Attributs
 
     [SerializeField] private Transform player;
 
@@ -12,9 +13,11 @@ public class Mobs : MonoBehaviour {
     [SerializeField] private AnimationClip run, idle, attack, die;
 
     private Animation animationcontroller;
+
     private bool isAttack;  
     private bool Inrange { get { return Vector3.Distance(transform.position, player.position) <= range; } }
     private bool InrangeAttack { get { return Vector3.Distance(transform.position, player.position) <= rangeAttack; } }
+
     private float vie;
     [SerializeField] private GameObject valueBarMob;
     private float cooldownGlobal;
@@ -24,7 +27,8 @@ public class Mobs : MonoBehaviour {
 
     public bool IsTarget { get; set; }
     [SerializeField] public GameObject HealthBarMob;
-    
+    #endregion
+
 
     private void OnDrawGizmos()
     {
@@ -48,6 +52,7 @@ public class Mobs : MonoBehaviour {
         manageHealthBar();
 
     }
+    #region EnemyAI
     private void chase()
     {
         if (Inrange && !isAttack)
@@ -110,4 +115,5 @@ public class Mobs : MonoBehaviour {
             Destroy(gameObject, 0.5f);
         }
     }
+    #endregion
 }

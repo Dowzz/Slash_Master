@@ -6,8 +6,9 @@ using UnityEngine.EventSystems;
 using System;
 
 public class Slot : MonoBehaviour{
+    #region Attributs
     public String identity;
-    public Item item;
+    public Item currentitem;
     public int id;
     public ItemTypes availableItemType;
 
@@ -15,7 +16,8 @@ public class Slot : MonoBehaviour{
     private Image image;
     private Text quantityText;
     private Tooltip tooltip;
-    
+
+    #endregion
 
     private void Start()
     {
@@ -30,21 +32,11 @@ public class Slot : MonoBehaviour{
         quantityText = transform.Find("Quantity").GetComponent<Text>();
     }
 
-    public void RefreshImage()
-    {
-        if (item == null)
-        {
-            image.sprite = Resources.Load<Sprite>("PNG/CharInventory/" + identity);
-            return;
-        }
-
-        image.sprite = Resources.Load<Sprite>("PNG/Items/" + item.image);
-    }
-
+    #region Trigger
     public void MouseDown()
     {
         //clique pour deplacer un objet
-        if (item == null) return;
+        if (currentitem == null) return;
 
         Global.inventoryManager.StartDrag(this);
     }
@@ -59,8 +51,8 @@ public class Slot : MonoBehaviour{
         if (Global.inventoryManager.dragEnable)
             Global.inventoryManager.endSlot = this;
 
-        if (item == null) return;
-        tooltip.Activate(item);
+        if (currentitem == null) return;
+        tooltip.Activate(currentitem);
 
     }
     public void MouseExit()
@@ -69,13 +61,36 @@ public class Slot : MonoBehaviour{
         if (Global.inventoryManager.dragEnable) Global.inventoryManager.endSlot = null;
         
     }
+
+    #endregion
+
+    #region refresh
+
+    public void changeItem(Item item)
+    {
+        currentitem = item;
+        RefreshImage();
+        refreshQuantity();
+    }
+
     public void refreshQuantity()
     {
-        if (item == null || quantityText == null)
+        if (currentitem == null || quantityText == null)
         {
             quantityText.text = string.Empty;
             return;
         }
-        quantityText.text = (item.quantity <= 0) ? string.Empty : item.quantity.ToString();
+        quantityText.text = (currentitem.quantity <= 0) ? string.Empty : currentitem.quantity.ToString();
     }
+    public void RefreshImage()
+    {
+        if (currentitem == null)
+        {
+            image.sprite = Resources.Load<Sprite>("PNG/CharInventory/" + identity);
+            return;
+        }
+
+        image.sprite = Resources.Load<Sprite>("PNG/Items/" + currentitem.image);
+    }
+    #endregion
 }

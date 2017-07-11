@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ring : MonoBehaviour {
+public class Ring : Item {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Ring()
+    {
+        this.itemType = ItemTypes.Ring;
+    }
 }

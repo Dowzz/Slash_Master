@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SlotManager : MonoBehaviour {
-
+    #region Attributs
     public int colsCount = 0;
     public int rowsCount = 0;
     public GameObject slotPrefab;
@@ -11,7 +11,8 @@ public class SlotManager : MonoBehaviour {
     public int slotOffset = 0;
 
     private Vector3 slotPosition;
-    
+
+    #endregion
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class SlotManager : MonoBehaviour {
         slotPosition = defaultslotPosition;
     }
 
+    #region génération slots
     public void CreatSlots()
     {
         if (slotPrefab == null) Debug.LogError("slotPrefab ne peut pas être nul.");
@@ -59,5 +61,6 @@ public class SlotManager : MonoBehaviour {
             }
         }
     }
+    #endregion
 
 }

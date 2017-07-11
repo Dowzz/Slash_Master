@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pendant : MonoBehaviour {
+public class Pendant : Item {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Pendant()
+    {
+        this.itemType = ItemTypes.Pendant;
+    }
+
 }

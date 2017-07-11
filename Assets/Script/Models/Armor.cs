@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Armor : MonoBehaviour {
+public class Armor : Item {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public Armor()
+    {
+        this.itemType = ItemTypes.Armor;
+    }
 }

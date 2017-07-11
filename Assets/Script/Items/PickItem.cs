@@ -3,26 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickItem : MonoBehaviour {
-    public string itemName;
+    #region Attributs
+    public Itemslist wantedItem;
     public int quantity;
-    public string image;
-    public ItemTypes type;
-
+    #endregion
     private void OnTriggerEnter(Collider obj)
     {
-        BuildItem(); 
-        
-
-
+        GetItem(); 
     }
-    void BuildItem()
+    void GetItem()
     {
-        Item item01 = new Item();
-        item01.name = itemName;
-        item01.itemType = type;
-        item01.quantity = quantity;
-        item01.image = image;
-     
-        Global.inventoryManager.Additem(item01);
+        Item item = Global.json.GetItemByName(wantedItem);
+        item.quantity = quantity;
+        Global.inventoryManager.Additem(item);
     }
 }

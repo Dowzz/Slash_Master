@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class Weapon : Item {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     public Weapon()
     {
         this.itemType = ItemTypes.Weapon;
+        this.level = 5;
+        this.description = "Une Arme De bonne qualité";
+        this.rarity = "Ordinaire";
     }
 }

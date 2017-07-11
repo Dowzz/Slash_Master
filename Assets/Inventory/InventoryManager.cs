@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 
 public class InventoryManager : MonoBehaviour {
+    #region Attributs
     public bool dragEnable = false;
     public Slot endSlot;
     public GameObject draggableItem;
@@ -13,6 +14,9 @@ public class InventoryManager : MonoBehaviour {
     private Image draggableImage;
     private Vector3 dragPosition;
     public List<Slot> slotlist = new List<Slot>();
+    public int maxItemsInSameSlot;
+
+    #endregion
 
     private void Awake()
     {
@@ -35,7 +39,7 @@ public class InventoryManager : MonoBehaviour {
         dragEnable = true;
         startSlot = slot;
 
-        draggableImage.sprite = Resources.Load<Sprite>("PNG/Items/" + slot.item.image);
+        draggableImage.sprite = Resources.Load<Sprite>("PNG/Items/" + slot.currentitem.image);
     }
     public void stopDrag()
     {
@@ -62,33 +66,60 @@ public class InventoryManager : MonoBehaviour {
     void changeSlotItem()
     {
         if (startSlot == endSlot) return;
-        if (startSlot.item == null) return;
+        if (startSlot.currentitem == null) return;
 
         //check item type
-        ItemTypes itemType = startSlot.item.itemType;
+        ItemTypes itemType = startSlot.currentitem.itemType;
         ItemTypes slotType = endSlot.availableItemType;
 
         if (slotType == ItemTypes.None || (slotType != ItemTypes.None && itemType == slotType))
-        { 
+        {
+            Item item = endSlot.currentitem;
+
             //change le slot
-            endSlot.item = startSlot.item;
-            endSlot.RefreshImage();
-            endSlot.refreshQuantity();
+            endSlot.changeItem(startSlot.currentitem);
+
             //change start slot image
-            startSlot.item = null;
-            startSlot.RefreshImage();
-            startSlot.refreshQuantity();
+            startSlot.changeItem(item);
             }
     }
     #endregion
+
+    #region items
     public void Additem (Item item)
         {
             if (item == null) return;
 
-        Slot currentSlot = slotlist.Where(p => p.item == null).First();
+        Slot currentSlot = slotlist.SingleOrDefault(
+            p => p.currentitem != null
+            && p.currentitem.name == item.name
+            && p.currentitem.quantity + item.quantity <= maxItemsInSameSlot
+            
+            );
 
-        currentSlot.item = item;
-        currentSlot.RefreshImage();
-        currentSlot.refreshQuantity();
+        //l'inventaire contient un item
+        if (currentSlot != null)
+        {
+            //incremente la quantité
+            currentSlot.currentitem.quantity += item.quantity;
         }
+
+        else
+        {
+            currentSlot = slotlist.Where(p => p.currentitem == null).First();
+            
+            if (currentSlot == null)
+            {
+                print("Votre Inventaire est plein");
+            }
+
+            currentSlot.currentitem = item;
+            currentSlot.RefreshImage();
+            
+        }
+        currentSlot.refreshQuantity();
+
+
+    }
+    #endregion
 }
