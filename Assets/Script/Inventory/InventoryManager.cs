@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour {
 
         draggableImage.sprite = Resources.Load<Sprite>("PNG/Items/" + slot.currentitem.image);
     }
-    public void stopDrag()
+    public void StopDrag()
     {
         //stop drag du current slot
         
@@ -115,8 +115,13 @@ public class InventoryManager : MonoBehaviour {
 
             currentSlot.currentitem = item;
             currentSlot.RefreshImage();
-            
         }
+
+        //save item in playerpref.
+        item.quantity = currentSlot.currentitem.quantity;
+        Global.save.SaveItem(currentSlot.id, item);
+        
+
         currentSlot.refreshQuantity();
 
 

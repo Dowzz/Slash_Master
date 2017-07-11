@@ -9,6 +9,7 @@ public class Move : MonoBehaviour {
     private Animator animator;
     [SerializeField] private LayerMask layer;
     private bool MoveAuto;
+    public RectTransform inventoryPanel;
     
 	
 	void Start () {
@@ -24,35 +25,35 @@ public class Move : MonoBehaviour {
 
     private void MoveToPotision()
     {
-        if (Vector3.Distance(transform.position, Position()) > 0f)
-        {
-            if (!fight.IsAttack)
+   
+            if (Vector3.Distance(transform.position, Position()) > 0f)
             {
-                animator.SetBool("run", true);
+                if (!fight.IsAttack)
+                {
+                    animator.SetBool("run", true);
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Attack", false);
+                    Quaternion newRotation = Quaternion.LookRotation(Position() - transform.position);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 0.1f);
+                    transform.position = Vector3.MoveTowards(transform.position, Position(), vitesse * Time.deltaTime);
+                }
+
+            }
+            else
+            {
+                animator.SetBool("run", false);
                 animator.SetBool("Idle", false);
-                animator.SetBool("Attack", false);
-                Quaternion newRotation = Quaternion.LookRotation(Position() - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 0.1f);
-                transform.position = Vector3.MoveTowards(transform.position, Position(), vitesse * Time.deltaTime); 
-            }            
-            
-        }
-        else
-        {
-            animator.SetBool("run", false);
-            animator.SetBool("Idle", false);
-        }
-       
+            }
+        
+
     }
     private Vector3 Position()
     {
         GameObject target = fight.Target;
 
-        
-
-       
         if (Input.GetMouseButton(0))
         {
+            if (inventoryPanel.gameObject.activeInHierarchy) return position = transform.position;
             if (target != null)
             {
                 if (target.GetComponent<Mobs>().IsTarget)

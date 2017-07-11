@@ -8,7 +8,8 @@ public class Global : MonoBehaviour {
     public static SlotManager slotManager;
     public static InventoryManager inventoryManager;
     public RectTransform InventoryPanel;
-    public static Jsonreader json; 
+    public static Jsonreader json;
+    public static SaveManager save;
     public RectTransform EquipPanel;
     public static GameObject canvas;
     bool menuIsActive { get; set; }
@@ -24,26 +25,12 @@ public class Global : MonoBehaviour {
     {
         //debug Création d'item
         slotManager.CreatSlots();
-        
+        slotManager.LoadItems();
 
         GameObject slot1 = GameObject.Find("Slot1");
         slot1.GetComponent<Slot>().changeItem(json.GetItemByName(Itemslist.ManaPotion));
-
-
-
-
-        /*GameObject slot2 = GameObject.Find("Slot2");
-        Slot Myslot2 = slot2.GetComponent<Slot>();
-        Consumable consumable = new Consumable();
-        consumable.name = "Potion";
-        consumable.image = "drink";
-        consumable.quantity = 5;
-        consumable.itemType = ItemTypes.Consumable;
-        Myslot2.item = consumable;
-        Myslot2.RefreshImage();
-        slot.refreshQuantity();
-        InventoryPanel.gameObject.SetActive(false);*/
-
+        
+        //Hide Inventory
         InventoryPanel.gameObject.SetActive(false);
     }
     
@@ -53,6 +40,7 @@ public class Global : MonoBehaviour {
         {
             menuIsActive = !menuIsActive;
             InventoryPanel.gameObject.SetActive(menuIsActive);
+
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
