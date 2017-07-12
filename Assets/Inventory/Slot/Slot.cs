@@ -27,7 +27,7 @@ public class Slot : MonoBehaviour{
     void Awake()
     {
         identity = GetComponent<Slot>().identity;
-        image = this.transform.Find("ItemImage").GetComponent<Image>();
+        image = transform.GetChild(0).GetComponent<Image>();
         RefreshImage();
         quantityText = transform.Find("Quantity").GetComponent<Text>();
     }
@@ -44,7 +44,7 @@ public class Slot : MonoBehaviour{
     public void MouseUp()
     {
         //pour lacher l'objet ou on veut
-        Global.inventoryManager.StopDrag();
+        Global.inventoryManager.stopDrag();
     }
     public void MouseEnter()
     {

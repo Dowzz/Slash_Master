@@ -9,7 +9,6 @@ public class CameraFollow : MonoBehaviour {
     private float distance, Height;
     float zoomSpeed = 25f;
     Camera playerCam;
-    public RectTransform inventoryPanel;
 
     // Use this for initialization
     void Start () {
@@ -21,7 +20,6 @@ public class CameraFollow : MonoBehaviour {
 	void Update () {
         TargetFollow();
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0)
-            if (inventoryPanel.gameObject.activeInHierarchy) return ;
         {
             float scroll = Input.GetAxis("Mouse ScrollWheel");
             playerCam.fieldOfView -= scroll * zoomSpeed;

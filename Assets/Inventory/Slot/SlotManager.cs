@@ -61,14 +61,6 @@ public class SlotManager : MonoBehaviour {
             }
         }
     }
-    public void LoadItems()
-    {
-        foreach (Slot temp in Global.inventoryManager.slotlist)
-        {
-            Item item =  Global.save.GetItemBySlot(temp.id);
-            temp.changeItem(item);
-        }
-    }
     #endregion
 
 }

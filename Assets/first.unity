@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37391213, g: 0.38184914, b: 0.36036408, a: 1}
+  m_IndirectSpecularColor: {r: 0.3739125, g: 0.3818496, b: 0.36036402, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -313,14 +313,6 @@ Prefab:
       propertyPath: availableItemType
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
   m_IsPrefabParent: 0
@@ -494,14 +486,6 @@ Prefab:
       propertyPath: availableItemType
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
   m_IsPrefabParent: 0
@@ -641,14 +625,6 @@ Prefab:
         type: 2}
       propertyPath: availableItemType
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
@@ -915,14 +891,6 @@ Prefab:
       propertyPath: availableItemType
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
   m_IsPrefabParent: 0
@@ -938,7 +906,6 @@ GameObject:
   - component: {fileID: 322365662}
   - component: {fileID: 322365664}
   - component: {fileID: 322365666}
-  - component: {fileID: 322365667}
   m_Layer: 0
   m_Name: Global
   m_TagString: Untagged
@@ -1011,17 +978,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jsonfile: {fileID: 4900000, guid: 724f4cd9032710b47af5dae98181d50c, type: 3}
---- !u!114 &322365667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 322365661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae3f78048ccc7714a9bb00e6b0526514, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &328133679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,14 +1280,6 @@ Prefab:
         type: 2}
       propertyPath: availableItemType
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
@@ -2066,14 +2014,6 @@ Prefab:
       propertyPath: m_Name
       value: Slot (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
   m_IsPrefabParent: 0
@@ -2181,10 +2121,10 @@ RectTransform:
   m_Father: {fileID: 754079574}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -163.59598, y: 0.5173397}
-  m_SizeDelta: {x: -457, y: -123.0347}
+  m_AnchorMin: {x: 0.07666804, y: 0.100625426}
+  m_AnchorMax: {x: 0.54, y: 0.8993746}
+  m_AnchoredPosition: {x: -0.09597778, y: 0.51733994}
+  m_SizeDelta: {x: 0, y: -1.0347}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1110626855
 GameObject:
@@ -2278,7 +2218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 184.1, y: -10.925007}
+  m_AnchoredPosition: {x: 184.1, y: -10.925003}
   m_SizeDelta: {x: 42.4, y: 21.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1203312291
@@ -2356,7 +2296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 102.65, y: -43.699974}
+  m_AnchoredPosition: {x: 102.65, y: -43.699997}
   m_SizeDelta: {x: 205.3, y: 43.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1205528549
@@ -2616,7 +2556,6 @@ MonoBehaviour:
   target: {fileID: 1272873009}
   distance: 11.5
   Height: 11.5
-  inventoryPanel: {fileID: 1088108641}
 --- !u!95 &1220915939
 Animator:
   serializedVersion: 3
@@ -2718,7 +2657,7 @@ Prefab:
     - target: {fileID: 224247109936676602, guid: 7d0b193b16a7f9349bd1c4930ae5eecf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -306.54498
+      value: -261.3
       objectReference: {fileID: 0}
     - target: {fileID: 224247109936676602, guid: 7d0b193b16a7f9349bd1c4930ae5eecf,
         type: 2}
@@ -2758,7 +2697,7 @@ Prefab:
     - target: {fileID: 224247109936676602, guid: 7d0b193b16a7f9349bd1c4930ae5eecf,
         type: 2}
       propertyPath: m_Pivot.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224204696238640138, guid: 7d0b193b16a7f9349bd1c4930ae5eecf,
         type: 2}
@@ -3001,18 +2940,6 @@ Prefab:
       propertyPath: m_FontData.m_MinSize
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1030094104298712, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
-      propertyPath: m_Name
-      value: ItemImage
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
   m_IsPrefabParent: 0
@@ -3067,7 +2994,6 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 4294967039
-  inventoryPanel: {fileID: 1088108641}
 --- !u!114 &1272873011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3370,14 +3296,6 @@ Prefab:
       propertyPath: availableItemType
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
   m_IsPrefabParent: 0
@@ -3432,8 +3350,8 @@ Transform:
   m_PrefabParentObject: {fileID: 459818, guid: c1ece6a75c5792b44994826b829185a5, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1338360047}
-  m_LocalRotation: {x: 0.5, y: -0.50000006, z: -0.5, w: -0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0017318726}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.0000000099258495, y: 0, z: -0.0017328988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 911788469}
@@ -3742,8 +3660,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1661d8af69a2747a8590e5c36782a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wantedItem: 0
+  itemName: Potion
   quantity: 1
+  image: drink
+  type: 2
 --- !u!23 &1502010564
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4365,14 +4285,6 @@ Prefab:
       propertyPath: availableItemType
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
   m_IsPrefabParent: 0
@@ -4605,7 +4517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 154.8, y: -77.999985}
+  m_AnchoredPosition: {x: 154.8, y: -78}
   m_SizeDelta: {x: 100.9, y: 24.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1769718429
@@ -4682,7 +4594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.062499437}
   m_AnchorMax: {x: 0.083329156, y: 0.5}
-  m_AnchoredPosition: {x: 1.5, y: -48.000046}
+  m_AnchoredPosition: {x: 1.5, y: -48}
   m_SizeDelta: {x: 2, y: -95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1793329968
@@ -5305,14 +5217,6 @@ Prefab:
         type: 2}
       propertyPath: availableItemType
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_SizeDelta.y
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64675218ca946bf4d955d12b00f3d400, type: 2}
