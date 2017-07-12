@@ -22,7 +22,10 @@ public class Slot : MonoBehaviour{
     private void Start()
     {
         tooltip = GameObject.Find("Canvas").GetComponent<Tooltip>();
-        refreshQuantity();
+        if (currentitem == null) LoadItem();
+        if (!Global.inventoryManager.slotlist.Contains(this))
+        Global.inventoryManager.slotlist.Add(this);
+
     }
     void Awake()
     {
@@ -69,8 +72,8 @@ public class Slot : MonoBehaviour{
     public void changeItem(Item item)
     {
         currentitem = item;
-        RefreshImage();
-        refreshQuantity();
+        refreshAll();
+       
     }
 
     public void refreshQuantity()
@@ -91,6 +94,17 @@ public class Slot : MonoBehaviour{
         }
 
         image.sprite = Resources.Load<Sprite>("PNG/Items/" + currentitem.image);
+    }
+
+    public void LoadItem()
+    {
+        currentitem = Global.save.GetItemBySlot(this);
+        if (currentitem != null) refreshAll();
+    }
+    public void refreshAll()
+    {
+        RefreshImage();
+        refreshQuantity();
     }
     #endregion
 }

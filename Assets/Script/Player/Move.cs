@@ -9,6 +9,7 @@ public class Move : MonoBehaviour {
     private Animator animator;
     [SerializeField] private LayerMask layer;
     private bool MoveAuto;
+    public GameObject inventorypanel;
     
 	
 	void Start () {
@@ -48,11 +49,12 @@ public class Move : MonoBehaviour {
     {
         GameObject target = fight.Target;
 
-        
 
-       
-        if (Input.GetMouseButton(0))
+        if (inventorypanel.gameObject.activeInHierarchy) return position = transform.position;
+
+            if (Input.GetMouseButton(0))
         {
+           
             if (target != null)
             {
                 if (target.GetComponent<Mobs>().IsTarget)

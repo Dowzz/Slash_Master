@@ -13,6 +13,8 @@ public class Item {
     public int level;
     public string description;
     public ItemTypes itemType;
+    public Itemslist jsonItem;
+    public int max;
     #endregion
 }
  

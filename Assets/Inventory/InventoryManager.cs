@@ -72,23 +72,44 @@ public class InventoryManager : MonoBehaviour {
         ItemTypes itemType = startSlot.currentitem.itemType;
         ItemTypes slotType = endSlot.availableItemType;
 
+        
         if (slotType == ItemTypes.None || (slotType != ItemTypes.None && itemType == slotType))
         {
             Item item = endSlot.currentitem;
 
-            //change le slot
-            endSlot.changeItem(startSlot.currentitem);
+            if (ChekItemInSlot(startSlot, endSlot.currentitem) && ChekItemInSlot(endSlot, startSlot.currentitem))
+            {
+                //change le slot
+                endSlot.changeItem(startSlot.currentitem);
+                //save item
+                Global.save.SaveItem(endSlot, startSlot.currentitem, endSlot.availableItemType);
 
-            //change start slot image
-            startSlot.changeItem(item);
+                //change start slot image
+                startSlot.changeItem(item);
+                if (item != null)
+                    Global.save.SaveItem(startSlot, item, startSlot.availableItemType);
+                else
+                    Global.save.DeleteItem(startSlot, startSlot.availableItemType);
             }
+        } 
+
+           
+
+        startSlot = null;
+        endSlot = null;
+    }
+    bool ChekItemInSlot(Slot slot, Item item)
+    {
+        if (item == null) return true;
+        if (slot.availableItemType == ItemTypes.None) return true;
+        return (slot.availableItemType == item.itemType) ? true : false;
     }
     #endregion
 
     #region items
-    public void Additem (Item item)
+    public bool Additem (Item item)
         {
-            if (item == null) return;
+            if (item == null) return false;
 
         Slot currentSlot = slotlist.SingleOrDefault(
             p => p.currentitem != null
@@ -101,7 +122,9 @@ public class InventoryManager : MonoBehaviour {
         if (currentSlot != null)
         {
             //incremente la quantité
-            currentSlot.currentitem.quantity += item.quantity;
+            if (currentSlot.currentitem.quantity < item.max)
+                currentSlot.currentitem.quantity += item.quantity;
+            else return false;
         }
 
         else
@@ -111,13 +134,19 @@ public class InventoryManager : MonoBehaviour {
             if (currentSlot == null)
             {
                 print("Votre Inventaire est plein");
+                return false;
             }
 
             currentSlot.currentitem = item;
             currentSlot.RefreshImage();
-            
         }
+        item.quantity = currentSlot.currentitem.quantity;
+        Global.save.SaveItem(currentSlot, item, currentSlot.availableItemType);
+        
+
         currentSlot.refreshQuantity();
+
+        return true;
 
 
     }

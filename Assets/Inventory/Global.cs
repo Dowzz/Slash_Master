@@ -12,6 +12,8 @@ public class Global : MonoBehaviour {
     public RectTransform EquipPanel;
     public static GameObject canvas;
     bool menuIsActive { get; set; }
+    public static SaveManager save;
+    public static int DEFAULT_MAX_ITEM = 99;
 
     #endregion
 
@@ -22,27 +24,7 @@ public class Global : MonoBehaviour {
 
     void Start()
     {
-        //debug Création d'item
-        slotManager.CreatSlots();
-        
-
-        GameObject slot1 = GameObject.Find("Slot1");
-        slot1.GetComponent<Slot>().changeItem(json.GetItemByName(Itemslist.ManaPotion));
-
-
-
-
-        /*GameObject slot2 = GameObject.Find("Slot2");
-        Slot Myslot2 = slot2.GetComponent<Slot>();
-        Consumable consumable = new Consumable();
-        consumable.name = "Potion";
-        consumable.image = "drink";
-        consumable.quantity = 5;
-        consumable.itemType = ItemTypes.Consumable;
-        Myslot2.item = consumable;
-        Myslot2.RefreshImage();
-        slot.refreshQuantity();
-        InventoryPanel.gameObject.SetActive(false);*/
+        //PlayerPrefs.DeleteAll();
 
         InventoryPanel.gameObject.SetActive(false);
     }
@@ -62,7 +44,7 @@ public class Global : MonoBehaviour {
 }
 public enum Itemslist
 {
-    HealthPotion, ManaPotion
+    HealthPotion, ManaPotion, BasicSword
 }
 
 public enum ItemTypes

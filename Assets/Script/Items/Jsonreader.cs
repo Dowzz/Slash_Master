@@ -31,11 +31,11 @@ public class Jsonreader : MonoBehaviour {
             level = int.Parse(currentJsonItem["level"].Value),
             image = currentJsonItem["image"].Value,
             quantity = 0,
-            itemType = (ItemTypes)System.Enum.Parse(typeof(ItemTypes), currentJsonItem["type"].Value)
+            itemType = (ItemTypes)System.Enum.Parse(typeof(ItemTypes), currentJsonItem["type"].Value),
+            jsonItem = name,
+            max = (string.IsNullOrEmpty(currentJsonItem["max"].Value)) ? Global.DEFAULT_MAX_ITEM : int.Parse(currentJsonItem["max"].Value.ToString())
     };
 
-        
-        
         return item;
     }
     #endregion

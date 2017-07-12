@@ -12,4 +12,12 @@
 		"level": "1",
 		"type": "Consumable",
 		"image": "meat" 
+	},
+	"BasicSword" :{
+		"name": "Epee basique",
+		"description": "une epee toute simple",
+		"level": "5",
+		"type": "Weapon",
+		"image": "gladius" ,
+		"max" : 1
 	}

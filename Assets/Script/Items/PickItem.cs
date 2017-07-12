@@ -15,6 +15,8 @@ public class PickItem : MonoBehaviour {
     {
         Item item = Global.json.GetItemByName(wantedItem);
         item.quantity = quantity;
-        Global.inventoryManager.Additem(item);
+        bool result = Global.inventoryManager.Additem(item);
+
+        if (result) Destroy(gameObject); 
     }
 }

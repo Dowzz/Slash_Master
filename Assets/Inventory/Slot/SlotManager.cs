@@ -18,6 +18,7 @@ public class SlotManager : MonoBehaviour {
     {
         Global.slotManager = this;
         slotPosition = defaultslotPosition;
+        CreatSlots();
     }
 
     #region génération slots
@@ -60,7 +61,22 @@ public class SlotManager : MonoBehaviour {
 
             }
         }
+        LoadItems();
     }
     #endregion
+    #region chargement
+    void LoadItems()
+    {
+        foreach (Slot temp in Global.inventoryManager.slotlist)
+        {
+
+            Item item = Global.save.GetItemBySlot(temp);
+            temp.changeItem(item);
+            
+        }
+    }
+    #endregion
+
+
 
 }
